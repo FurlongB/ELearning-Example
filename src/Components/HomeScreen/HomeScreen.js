@@ -11,15 +11,12 @@ const homeScreen = (props) => {
     const [pages, setPages] = useState([])
     useEffect(() =>{
         setTitle(jsonResponse.courseTitle[0].title);
-            console.log('title', title)
             const coursePages = jsonResponse.pages;
-            console.log('coursePages', coursePages)
             const loadPages = [];
             for (const key in coursePages ){
                 loadPages.push({id: key, name: coursePages[key].name, pageSrc: coursePages[key].pageSrc, type: coursePages[key].type})
             }
-            setPages(setPages);
-            console.log('pages', pages)
+            setPages(loadPages);
          //})
         //.catch(err =>{
             //console.log(err)
@@ -30,13 +27,13 @@ const homeScreen = (props) => {
         }
     }, []);
    return (
-       <div> 
-           <Header coursetitle={title}/>
-           <div className={classes.HomeScreen}>
+    <div> 
+        <Header coursetitle={title}/>
+        <div className={classes.HomeScreen}>
             <Navigation pages={pages}/>
-       </div>
+        </div>
       
-       </div>
+    </div>
       
     )
 };

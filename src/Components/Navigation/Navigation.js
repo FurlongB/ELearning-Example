@@ -30,7 +30,6 @@ const NavTabs =(props) => {
   const [value, setValue] = useState(0);
   const [curStatus, setCurStatus] = useState('text');
   const authStatus = useContext(AuthContext);
-
   useEffect(() =>{
     loadContent();
     return () =>{
@@ -69,8 +68,10 @@ const NavTabs =(props) => {
 
 
   const handleChange = (event, value) => {
+
+    console.log("value", value)
       setValue(value);
-      if(value === 0){
+      /*if(value === 0){
         setCurStatus('text')
       }else if(value === 1){
         setCurStatus('accordian')
@@ -84,7 +85,7 @@ const NavTabs =(props) => {
         setCurStatus('accordian_fs') 
       }else{
         setCurStatus('add')
-      }
+      }*/
   };
  
 
@@ -95,12 +96,12 @@ const NavTabs =(props) => {
         <div className={classes.root}>
           <AppBar position="static">
             <Tabs variant="fullWidth" value={value} onChange={handleChange.bind(this)}>
-              <LinkTab label="Text and Graphic" href="page1" />
-              <LinkTab label="Accordian" href="page2" />
-              <LinkTab label="Multiple Choice Single Answer" href="page3" />
-              <LinkTab label="Multiple Choice Mulitple Answers" href="page4" />
-              <LinkTab label="Video" href="page5" />
-              <LinkTab label="Accordian_Fs" href="page6" />
+              <LinkTab label="Text and Graphic" />
+              <LinkTab label="Accordian"/>
+              <LinkTab label="Multiple Choice Single Answer" />
+              <LinkTab label="Multiple Choice Mulitple Answers" />
+              <LinkTab label="Video" />
+              <LinkTab label="Accordian_Fs" />
             </Tabs>
           </AppBar>
           {value === 0 ? <TextGraphics />: null}
