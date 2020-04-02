@@ -98,7 +98,7 @@ const CheckboxesGroup = (props) => {
            <div className={classed.box}>
                 <div className={classes.root}>
                 <form onSubmit={handleSubmit}> 
-                <h1>Page Title</h1>
+                <h1>{props.pageTitle}</h1>
                 <div className={classed.questText}>Which of the below options are symptons of Covid-19?</div>
                 <div className={classed.promptText}>Please select all the correct options, then click <b>Submit</b>.</div>
                     <FormControl component="fieldset" className={classes.formControl}>
@@ -124,7 +124,7 @@ const CheckboxesGroup = (props) => {
                             label="Itchy"
                         />
                         </FormGroup>
-                        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={!checked ? true : false}>
+                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={!checked ? true : false}>
                             SUBMIT
                         </Button>
                     </FormControl>

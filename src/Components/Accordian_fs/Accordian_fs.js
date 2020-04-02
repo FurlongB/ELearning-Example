@@ -40,7 +40,7 @@ const ControlledExpansionPanels = (props) => {
   return (
     <div className={classed.Ruled}>
         <div className={classed.box}>
-          <h1>Page Title</h1>
+        <h1>{props.pageTitle}</h1>
           Please select each panel below to learn more about the various cells.<br/><br/> 
           <div className={classes.root}>
             <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>

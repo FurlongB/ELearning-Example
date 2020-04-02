@@ -55,18 +55,18 @@ const ErrorRadios = (props) => {
         <div className={classed.Left}>
             <div className={classed.box}>
                 <form onSubmit={handleSubmit}>
-                <h1>Page Title</h1>
+                <h1>{props.pageTitle}</h1>
                 <div className={classed.questText}>Which one of the below symptoms is not related to Covid-19?</div>
                 <div className={classed.promptText}>Please select one option, then click <b>Submit</b>.</div>
                     <FormControl component="fieldset" error={error} className={classes.formControl}>
                         <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange} >
                         <FormControlLabel value="Cough" control={<Radio />} label="Cough" />
                         <FormControlLabel value="Fever" control={<Radio />} label="Fever" />
-                        <FormControlLabel value="Foot Pain - Correct" control={<Radio />} label="Foot Pain" />
+                        <FormControlLabel value="Foot Pain" control={<Radio />} label="Foot Pain - Correct" />
                         <FormControlLabel value="Tiredness" control={<Radio />} label="Tiredness" />
                         </RadioGroup>
                         <br/>
-                        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={value === '' ? true : false}>
+                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={value === '' ? true : false}>
                             SUBMIT
                         </Button>
                     </FormControl>
