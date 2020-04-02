@@ -29,39 +29,45 @@ const footer = (props) => {
         console.log('Clean Up');
     }
     }, []);
-   return (
-    <footer >
-        <div>
-            {sectTitles !== null ? <Menu titles={sectTitles}/> : null }
-        </div>
-        <div className={classed.info}>
-            <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            className={classes.button}
-            onClick={props.prevPage}
-            disabled={props.curPage === 1 ? true : false}
-            >
-                Previous
-            </Button>
+    
+    const updateSection = (sect) => {
+        console.log('updated section: ', sect)
+        props.updateCurSect(sect);
+    }
 
-            <div className={classed.text}>
-                {props.curPage + " of " + props.totalPages}
+    return (
+        <footer>
+            <div>
+                {sectTitles !== null ? <Menu titles={sectTitles} handleReformat={updateSection.bind(this)}/> : null }
             </div>
+            <div className={classed.info}>
+                <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                onClick={props.prevPage}
+                disabled={props.curPage === 1 ? true : false}
+                >
+                    Previous
+                </Button>
 
-            <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            className={classes.button}
-            onClick={props.nextPage}
-            disabled={props.curPage === props.totalPages ? true : false}
-            >
-                Next
-            </Button>
-        </div>
-    </footer> 
+                <div className={classed.text}>
+                    {props.curPage + " of " + props.totalPages}
+                </div>
+
+                <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                className={classes.button}
+                onClick={props.nextPage}
+                disabled={props.curPage === props.totalPages ? true : false}
+                >
+                    Next
+                </Button>
+            </div>
+        </footer> 
     )
 };
 

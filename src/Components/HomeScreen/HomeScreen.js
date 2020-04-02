@@ -39,7 +39,7 @@ const homeScreen = (props) => {
         return () =>{
             //console.log('Clean Up');
         }
-    }, []);
+    }, [curSection]);
 
     const loadContent = (pages) =>{
         
@@ -64,13 +64,17 @@ const homeScreen = (props) => {
         
     }
 
+    const handleCurSect = (curSect) =>{
+        setCurSection(curSect);
+    }
+
    return (
     <div> 
         <Header coursetitle={title +" - "+sectTitle}/>
         <div className={classes.HomeScreen}>
             {pgToLoad !== null  ? <Page page={pgToLoad}/> : null}
         </div>
-        <Footer sections={jsonResponse.sections} curPage={curPage} totalPages={totalPages} prevPage={handlePrev.bind(this)} nextPage={handleNext.bind(this)}/>
+        <Footer sections={jsonResponse.sections} curPage={curPage} totalPages={totalPages} prevPage={handlePrev.bind(this)} nextPage={handleNext.bind(this)} updateCurSect={handleCurSect.bind(this)}/>
     </div>
       
     )

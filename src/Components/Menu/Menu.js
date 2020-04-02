@@ -24,6 +24,7 @@ const Menu = (props) => {
     console.log('Key', Key)
     getSect.setSect(Key);
     handleClose();
+    props.handleReformat(Key);
   }
 
   let sectionTitles = null
