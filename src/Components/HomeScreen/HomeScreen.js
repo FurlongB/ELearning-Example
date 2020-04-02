@@ -1,21 +1,26 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Page from '../Navigation/Navigation';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import  {jsonResponse}  from '../../utility/Json';
 
+import SectContext from '../../Context/sec-context'
+
 import classes from './HomeScreen.css'
 
 const homeScreen = (props) => {
+    const getSection = useContext(SectContext);
+    const sectData = getSection.status;
     const [title, setTitle] = useState('');
     const [sectTitle, setSectTitle] = useState('')
     const [pages, setPages] = useState([])
     const [curPage, setCurPage] = useState(1);
-    const [curSection, setCurSection] = useState(1);
+    const [curSection, setCurSection] = useState(sectData.section);
     const [totalPages, setTotalPages] = useState(0);
     const [totalSections, setTotalSections] = useState(0);
     const [pgToLoad, setPgToLoad] = useState(null);
+    
     useEffect(() =>{
         setTitle(jsonResponse.title);
         const courseSections = jsonResponse.sections;
@@ -30,15 +35,9 @@ const homeScreen = (props) => {
         setTotalPages(Object.keys(coursePages).length)
         setTotalSections(Object.keys(courseSections).length)
         setPages(loadPages);
-        loadContent(loadPages[curPage-1]);
-            
-         //})
-        //.catch(err =>{
-            //console.log(err)
-            //setError(err.message)
-       // });
+        loadContent(loadPages[curPage-1]);  
         return () =>{
-            console.log('Clean Up');
+            //console.log('Clean Up');
         }
     }, []);
 
@@ -63,10 +62,6 @@ const homeScreen = (props) => {
             loadContent(pages[crPage-1])
         }
         
-    }
-
-    const handleMenu = () =>{
-
     }
 
    return (

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+
+
 import classes from './ProgressIndictor.css';
 
 const ProgressIndictor = (props) =>{
@@ -31,8 +33,16 @@ const ProgressIndictor = (props) =>{
             }
          }
     }
+
+    const handleMenuClick = (event)=>{
+        event.preventDefault();
+        let id = "";
+        id = props.id.substr(props.id.lastIndexOf("_")+1, 1);
+        console.log('ID: ', id);
+        props.menuClick(id);
+    }
     return(
-        <div className={classes.ProgressIndictor}>
+        <div className={classes.ProgressIndictor} onClick={handleMenuClick.bind(this)}>
             <div className={classes.title}>
                 {props.title}
             </div>
@@ -43,6 +53,6 @@ const ProgressIndictor = (props) =>{
     );
 }
 
-export default ProgressIndictor
+export default ProgressIndictor;
 
 
