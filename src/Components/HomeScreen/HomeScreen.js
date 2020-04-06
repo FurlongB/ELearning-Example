@@ -1,4 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
+import axios from 'axios';
+
 import Page from '../Navigation/Navigation';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -35,36 +37,56 @@ const homeScreen = (props) => {
         setTotalPages(Object.keys(coursePages).length)
         setTotalSections(Object.keys(courseSections).length)
         setPages(loadPages);
-        loadContent(loadPages[curPage-1]);  
+        setPgToLoad(loadPages[curPage-1]);
+        updateProgressHandler(curPage, Object.keys(coursePages).length);
         return () =>{
             //console.log('Clean Up');
         }
     }, [curSection]);
 
-    const loadContent = (pages) =>{
-        
-        setPgToLoad(pages);
+    const loadContent = (curPg) =>{
+        setPgToLoad(pages[curPg-1]);
     }
+
+    const updateProgressHandler = (curPg, totalPg) =>{
+        const authData = {
+          curPage: curPg,
+          complete: Math.round(Number(curPg/totalPg)*100)
+        } 
+        let url = `https://adaptscenario.firebaseio.com/${"Section_"+curSection}.json`
+        axios.put(url, authData)
+        .then(res => {
+            console.log(res)
+            if(pgToLoad !== null){
+                loadContent(curPg);
+            }
+        })
+        .catch(err =>{
+            console.log(err)
+
+        });
+    };
 
     const handlePrev = () =>{
         let crPage = 0
         if(curPage > 1){
             crPage = curPage - 1
             setCurPage(crPage);
-            loadContent(pages[crPage-1])
+            loadContent(crPage)
         }
     }
+
     const handleNext = () =>{
         let crPage = 0
         if(curPage< totalPages){
             crPage = curPage + 1
             setCurPage(crPage);
-            loadContent(pages[crPage-1])
+            updateProgressHandler(crPage, totalPages);
         }
-        
     }
 
     const handleCurSect = (curSect) =>{
+        setCurPage(1);
         setCurSection(curSect);
     }
 
@@ -74,7 +96,7 @@ const homeScreen = (props) => {
         <div className={classes.HomeScreen}>
             {pgToLoad !== null  ? <Page page={pgToLoad}/> : null}
         </div>
-        <Footer sections={jsonResponse.sections} curPage={curPage} totalPages={totalPages} prevPage={handlePrev.bind(this)} nextPage={handleNext.bind(this)} updateCurSect={handleCurSect.bind(this)}/>
+        <Footer courseTitle={jsonResponse.title} sections={jsonResponse.sections} curPage={curPage} totalPages={totalPages} prevPage={handlePrev.bind(this)} nextPage={handleNext.bind(this)} updateCurSect={handleCurSect.bind(this)}/>
     </div>
       
     )

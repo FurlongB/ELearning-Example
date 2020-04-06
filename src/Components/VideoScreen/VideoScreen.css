@@ -3,10 +3,14 @@
     flex-direction: row;
     align-items: top;
     margin: auto;
-    padding: 10px;
+    padding: 5px;
     width: 95%;
+    height: 90%;
 }
 
+/*
+use this class if you want the video to be full width of the screen
+*/
 .VideoPanel{
     padding: 5px;
     margin: 10px auto;
