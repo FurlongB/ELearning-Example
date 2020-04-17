@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import AuthContext from '../../Context/auth-context';
 import authClass from './Auth.css'
 
+import ErrorDialog from '../UI/Dialog/Dialog'
+
 
 
 const styles = theme => ({
@@ -36,7 +38,7 @@ const styles = theme => ({
 const OutlinedTextFields = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [authenicate, setAuth] = useState(false);
+  const [authenicate, setAuth] = useState(null);
   const authStatus = useContext(AuthContext);
   const emailChange = (event) => {
     setEmail(event.target.value);
@@ -101,7 +103,8 @@ const OutlinedTextFields = (props) => {
                 <Button variant="contained" className={classes.button} onClick={submitHandler.bind(this)}>
                     Login
                 </Button>
-                {authenicate ? <Redirect to="/home"/>: null}
+                {authenicate !== null && authenicate ? <Redirect to="/home"/>: null}
+                {!authenicate &&  authenicate !== null ? <ErrorDialog title="User Credentials are Incorrect" message="Your Username and password don't match. Please re-enter your details and try to log on again." open={true}/> : null}
             </form>
         </div>
     );

@@ -11,6 +11,8 @@ import SectContext from '../../Context/sec-context'
 
 import classes from './HomeScreen.css'
 
+import Spinner from '../UI/Spinner/Spinner'
+
 const homeScreen = (props) => {
     const getSection = useContext(SectContext);
     const sectData = getSection.status;
@@ -94,7 +96,7 @@ const homeScreen = (props) => {
     <div> 
         <Header coursetitle={title +" - "+sectTitle}/>
         <div className={classes.HomeScreen}>
-            {pgToLoad !== null  ? <Page page={pgToLoad}/> : null}
+            {pgToLoad !== null  ? <Page page={pgToLoad}/> : <Spinner />}
         </div>
         <Footer courseTitle={jsonResponse.title} sections={jsonResponse.sections} curPage={curPage} totalPages={totalPages} prevPage={handlePrev.bind(this)} nextPage={handleNext.bind(this)} updateCurSect={handleCurSect.bind(this)}/>
     </div>

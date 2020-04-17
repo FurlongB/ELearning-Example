@@ -1,7 +1,5 @@
-import React, {useState, useContext} from 'react';
-import { Redirect } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
 
-import ValidContext from '../../valid-context';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,11 +9,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const AlertDialog = (props) => {
-  const [open, setOpen] = useState(true);
-  const validStatus = useContext( ValidContext);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() =>{
+    setOpen(props.open)
+    return () =>{
+        //console.log('Clean Up');
+    }
+  }, []);
 
   const handleClose = () => {
-    validStatus.validStat({playerAddedStatus: false});
     setOpen(false);
   }
 
@@ -39,7 +42,6 @@ const AlertDialog = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-      {!open && props.redirect ? <Redirect to={props.redirect} /> : null}
     </div>
   );
 }
