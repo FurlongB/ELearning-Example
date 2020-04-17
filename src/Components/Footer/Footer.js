@@ -19,6 +19,7 @@ const footer = (props) => {
   const [sectTitles, setSectTitles] = useState(null)  
   useEffect(() =>{
     const loadTitles = [];
+    console.log('props.sections', props.sections)
     for (const key in props.sections){
         loadTitles.push({id: key, title: props.sections[key].title})
                 

@@ -22,6 +22,6 @@ export const jsonResponse = {
           { "name":"Page 5: MCQ1", "pageSrc": "mcq1", "type": "question", "id": "tg_03" },
           
         ],
-      }, 
+      },
     },
 }
