@@ -15,12 +15,11 @@ import Spinner from '../UI/Spinner/Spinner'
 
 const homeScreen = (props) => {
     const getSection = useContext(SectContext);
-    const sectData = getSection.status;
     const [title, setTitle] = useState('');
     const [sectTitle, setSectTitle] = useState('')
     const [pages, setPages] = useState([])
     const [curPage, setCurPage] = useState(1);
-    const [curSection, setCurSection] = useState(sectData.section);
+    const [curSection, setCurSection] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [totalSections, setTotalSections] = useState(0);
     const [pgToLoad, setPgToLoad] = useState(null);
@@ -28,39 +27,118 @@ const homeScreen = (props) => {
     useEffect(() =>{
         setTitle(jsonResponse.title);
         const courseSections = jsonResponse.sections;
-        console.log("courseSections", Object.keys(courseSections).length)
+        setTotalSections(Object.keys(courseSections).length)
+        axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
+        .then(res => {
+            console.log(res)
+            let setSectProgress = [];
+            let setPgProgress = [];
+            let setCompletion = [];
+            if(res.data === null){
+                for(let i = 0; i < Object.keys(courseSections).length; i++){
+                    if(i === 0){
+                        setSectProgress.push(1);
+                    }else{
+                        setSectProgress.push(0);
+                    }
+                    
+                    setCompletion.push(0);
+                    let curSectPages = [];
+
+                    for (let j = 0; j < Object.keys(courseSections["Section_"+Number(i+1)].pages).length; j++){
+                       if(i === 0 && j === 0){
+                            curSectPages.push(1);
+                       }else{
+                            curSectPages.push(0);
+                       }
+                        
+                    }
+                    setPgProgress.push(curSectPages);
+                }
+                
+            }else{
+                setSectProgress = res.data.section;
+                setPgProgress = res.data.page;
+                setCompletion = res.data.completion
+            }
+            const setData = {
+                section: setSectProgress,
+                page: setPgProgress,
+                completion: setCompletion
+            } 
+            console.log('setData: ', setData)
+            getSection.setSect(setData)
+            loadcourseData();
+        })
+        .catch(err =>{
+            console.log(err)
+
+        });
+       
+        return () =>{
+            //console.log('Clean Up');
+        }
+    }, [curSection]);
+
+    const loadcourseData = () =>{
+        const courseSections = jsonResponse.sections;
         const coursePages = courseSections["Section_"+curSection].pages;
-        setSectTitle(courseSections["Section_"+curSection].title);
         const loadPages = [];
         for (const key in coursePages){
             loadPages.push({id: key, name: coursePages[key].name, pageSrc: coursePages[key].pageSrc, type: coursePages[key].type})
                 
         }
         setTotalPages(Object.keys(coursePages).length)
-        setTotalSections(Object.keys(courseSections).length)
+        setSectTitle(courseSections["Section_"+curSection].title);
         setPages(loadPages);
         setPgToLoad(loadPages[curPage-1]);
-        updateProgressHandler(curPage, Object.keys(coursePages).length);
-        return () =>{
-            //console.log('Clean Up');
+        if(Number(curSection) > 1){
+            updateProgressHandler(curPage, Object.keys(jsonResponse.sections["Section_"+curSection].pages).length)
         }
-    }, [curSection]);
+    }
 
     const loadContent = (curPg) =>{
         setPgToLoad(pages[curPg-1]);
     }
 
     const updateProgressHandler = (curPg, totalPg) =>{
-        const authData = {
-          curPage: curPg,
-          complete: Math.round(Number(curPg/totalPg)*100)
+        let setSectProgress = getSection.status.section;
+        let setPgProgress = getSection.status.page;
+        let setCompletion = getSection.status.completion;
+        let complete = 0;
+        console.log('curSection: ', curSection)
+        for(let i = 0; i < Object.keys(jsonResponse.sections).length; i++){
+            console.log('curSection: ', Number(i+1) ," === ", Number(curSection))
+            if(Number(i+1) === Number(curSection)){
+                complete = Math.round(Number(curPg/totalPg) * 100)
+                console.log('complete: ', complete)
+                if(complete > Number(getSection.status.completion[i])){
+                    setCompletion[i] = complete;
+                }
+                if(complete === 100){
+                    setSectProgress[i] = 2;
+                }else{
+                    setSectProgress[i] = 1;
+                }
+            }
+            for (let j = 0; j < Object.keys(jsonResponse.sections["Section_"+curSection].pages).length; j++){
+                if(Number(i+1) === Number(curSection) && curPg === Number(j+1)){
+                    setPgProgress[i][j] = 1
+                    //curSectPages.push(1);
+                }
+            }
+        }
+        const setData = {
+            section: setSectProgress,
+            page: setPgProgress,
+            completion: setCompletion
         } 
-        let url = `https://adaptscenario.firebaseio.com/${"Section_"+curSection}.json`
-        axios.put(url, authData)
+        getSection.setSect(setData);
+        let url = `https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`
+        axios.put(url, setData)
         .then(res => {
-            console.log(res)
             if(pgToLoad !== null){
-                loadContent(curPg);
+                loadContent(curPage);
             }
         })
         .catch(err =>{
@@ -69,7 +147,8 @@ const homeScreen = (props) => {
         });
     };
 
-    const handlePrev = () =>{
+    const handlePrev = (event) =>{
+        event.preventDefault();
         let crPage = 0
         if(curPage > 1){
             crPage = curPage - 1
@@ -78,7 +157,8 @@ const homeScreen = (props) => {
         }
     }
 
-    const handleNext = () =>{
+    const handleNext = (event) =>{
+        event.preventDefault();
         let crPage = 0
         if(curPage< totalPages){
             crPage = curPage + 1

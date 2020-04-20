@@ -19,12 +19,10 @@ const footer = (props) => {
   const [sectTitles, setSectTitles] = useState(null)  
   useEffect(() =>{
     const loadTitles = [];
-    console.log('props.sections', props.sections)
     for (const key in props.sections){
         loadTitles.push({id: key, title: props.sections[key].title})
                 
     }
-    console.log('loadTitles', loadTitles)
     setSectTitles(loadTitles)
     return () =>{
         console.log('Clean Up');
@@ -32,7 +30,6 @@ const footer = (props) => {
     }, []);
     
     const updateSection = (sect) => {
-        console.log('updated section: ', sect)
         props.updateCurSect(sect);
     }
 

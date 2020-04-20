@@ -7,20 +7,14 @@ import SectContext from './Context/sec-context';
 
 const App = () =>{
     const [authStatus, setStatus] = useState(null);
-    const [curSect, setCurSect] = useState({section: "1", page: "1"});
+    const [curSect, setCurSect] = useState({});
 
     const setAuth = (stat) =>{
-      console.log('stat', stat)
-      let area = '';
-      if(stat === 'GOIP3etEbrUMJJ9N7OVldwEpkD23'){
-        area = 'Enniscorthy'
-      }
-      setStatus({ID: stat, area: area});
+      setStatus({ID: stat});
     }
 
     const setSection = (stat)=> {
-      console.log('Setting Section: ',stat);
-      setCurSect({section: stat, page: null})
+      setCurSect({section: stat.section, page: stat.page, completion: stat.completion})
     }
 
     let routes = (

@@ -1,5 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
-import axios from 'axios';
+import React, {useState, useContext} from 'react';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -18,41 +17,14 @@ const Menu = (props) => {
   const [open, setOpen] = useState(false);
   const [sectionComplete, setSectionComplete] = useState(null);
 
- /* useEffect(() =>{
-    console.log('props.titles', props.titles)
-    const loadCompletion = [];
-    for (const key in props.titles){
-       axios.get(`https://adaptscenario.firebaseio.com/${props.titles[key].id}.json`)
-        .then(res => {
-          loadCompletion.push({id: props.titles[key].id, title: props.titles[key].title,completed: res.data.complete});          
-        })
-        .catch(err =>{
-            console.log(err)
-      });
-    }
-    console.log('props.titles after', loadCompletion);
-    setSectionComplete(loadCompletion);  
-    return () =>{
-        console.log('Clean Up');
-    }
-  }, [sectionComplete !== null]);
-  */
-  
   const loadProgress = () =>{
     const loadCompletion = [];
     for (const key in props.titles){
-       axios.get(`https://adaptscenario.firebaseio.com/${props.titles[key].id}.json`)
-        .then(res => {
-          console.log("resData: ", res.data.complete)
-          loadCompletion.push({id: props.titles[key].id, title: props.titles[key].title,completed: res.data.complete});          
-          if(Object.keys(loadCompletion).length === Object.keys(props.titles).length){
-            setSectionComplete(loadCompletion);
-            setOpen(true);
-          }
-        })
-        .catch(err =>{
-            console.log(err)
-      });
+      loadCompletion.push({id: props.titles[key].id, title: props.titles[key].title, completed: getSect.status.completion[key]});          
+      if(Object.keys(loadCompletion).length === Object.keys(props.titles).length){
+        setSectionComplete(loadCompletion);
+        setOpen(true);
+      }
     }
   }; 
   
@@ -75,8 +47,6 @@ const Menu = (props) => {
   };
 
   const handleMenu = (Key) =>{
-    console.log('Key', Key)
-    getSect.setSect(Key);
     handleClose();
     props.handleReformat(Key);
   }
