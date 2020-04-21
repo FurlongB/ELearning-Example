@@ -5,6 +5,7 @@ import Mcqx from '../MCQx/MCQx';
 import Accordian from '../Accordian/Accordian';
 import Video from '../VideoScreen/VideoScreen';
 import AccordianFs from '../Accordian_fs/Accordian_fs';
+import Scenario from '../Scenario/Scenario';
 
 const NavTabs =(props) => {
   const [value, setValue] = useState('');
@@ -26,7 +27,7 @@ const NavTabs =(props) => {
           {value === "mcqx" ? <Mcqx pageTitle={title}/> : null}
           {value === "video" ? <Video pageTitle={title}/> : null}
           {value === "accordian_fs" ? <AccordianFs pageTitle={title}/> : null}
-          {value === "scenario" ? <AccordianFs pageTitle={title}/> : null}
+          {value === "scenario" ? <Scenario pageTitle={title}/> : null}
         </div>
     );
 }

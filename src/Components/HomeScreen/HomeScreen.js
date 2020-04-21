@@ -44,7 +44,6 @@ const homeScreen = (props) => {
                     }
                     setCompletion.push(0);
                     let curSectPages = [];
-
                     for (let j = 0; j < Object.keys(courseSections["Section_"+Number(i+1)].pages).length; j++){
                        if(i === Number(curSection-1) && j === 0){
                             curSectPages.push(1);
@@ -60,14 +59,8 @@ const homeScreen = (props) => {
                 setSectProgress = res.data.section;
                 setPgProgress = res.data.page;
                 setCompletion = res.data.completion
-                console.log('setSectProgress[Number(curSection-1)]: ',setSectProgress[Number(curSection-1)])
-                if(setSectProgress[Number(curSection-1)] === "0" ){
-                    setSectProgress[Number(curSection-1)][0] = 1;
-                    setPgProgress[Number(curSection-1)][0] = 1;
-                    setCompletion[Number(curSection-1)] = Math.round(Number(1/Object.keys(setSectProgress[Number(curSection-1)]).length) * 100)
-                }
-                 
             }
+            console.log("setCompletion: ", setCompletion)
             const setData = {
                 section: setSectProgress,
                 page: setPgProgress,
