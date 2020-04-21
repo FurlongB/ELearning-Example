@@ -17,7 +17,7 @@ const homeScreen = (props) => {
     const getSection = useContext(SectContext);
     const [title, setTitle] = useState('');
     const [sectTitle, setSectTitle] = useState('')
-    const [pages, setPages] = useState([])
+    const [pages, setPages] = useState(null);
     const [curPage, setCurPage] = useState(1);
     const [curSection, setCurSection] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -26,6 +26,7 @@ const homeScreen = (props) => {
     
     useEffect(() =>{
         setTitle(jsonResponse.title);
+        setPgToLoad(null);
         const courseSections = jsonResponse.sections;
         setTotalSections(Object.keys(courseSections).length)
         axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
@@ -36,17 +37,16 @@ const homeScreen = (props) => {
             let setCompletion = [];
             if(res.data === null){
                 for(let i = 0; i < Object.keys(courseSections).length; i++){
-                    if(i === 0){
+                    if(i === Number(curSection-1)){
                         setSectProgress.push(1);
                     }else{
                         setSectProgress.push(0);
                     }
-                    
                     setCompletion.push(0);
                     let curSectPages = [];
 
                     for (let j = 0; j < Object.keys(courseSections["Section_"+Number(i+1)].pages).length; j++){
-                       if(i === 0 && j === 0){
+                       if(i === Number(curSection-1) && j === 0){
                             curSectPages.push(1);
                        }else{
                             curSectPages.push(0);
@@ -60,13 +60,19 @@ const homeScreen = (props) => {
                 setSectProgress = res.data.section;
                 setPgProgress = res.data.page;
                 setCompletion = res.data.completion
+                console.log('setSectProgress[Number(curSection-1)]: ',setSectProgress[Number(curSection-1)])
+                if(setSectProgress[Number(curSection-1)] === "0" ){
+                    setSectProgress[Number(curSection-1)][0] = 1;
+                    setPgProgress[Number(curSection-1)][0] = 1;
+                    setCompletion[Number(curSection-1)] = Math.round(Number(1/Object.keys(setSectProgress[Number(curSection-1)]).length) * 100)
+                }
+                 
             }
             const setData = {
                 section: setSectProgress,
                 page: setPgProgress,
                 completion: setCompletion
             } 
-            console.log('setData: ', setData)
             getSection.setSect(setData)
             loadcourseData();
         })
@@ -92,26 +98,21 @@ const homeScreen = (props) => {
         setSectTitle(courseSections["Section_"+curSection].title);
         setPages(loadPages);
         setPgToLoad(loadPages[curPage-1]);
-        if(Number(curSection) > 1){
-            updateProgressHandler(curPage, Object.keys(jsonResponse.sections["Section_"+curSection].pages).length)
-        }
     }
 
-    const loadContent = (curPg) =>{
-        setPgToLoad(pages[curPg-1]);
+    const loadContent = (crPage)=>{
+        setPgToLoad(pages[crPage-1]);
     }
 
     const updateProgressHandler = (curPg, totalPg) =>{
+        setPgToLoad(null);
         let setSectProgress = getSection.status.section;
         let setPgProgress = getSection.status.page;
         let setCompletion = getSection.status.completion;
         let complete = 0;
-        console.log('curSection: ', curSection)
         for(let i = 0; i < Object.keys(jsonResponse.sections).length; i++){
-            console.log('curSection: ', Number(i+1) ," === ", Number(curSection))
             if(Number(i+1) === Number(curSection)){
                 complete = Math.round(Number(curPg/totalPg) * 100)
-                console.log('complete: ', complete)
                 if(complete > Number(getSection.status.completion[i])){
                     setCompletion[i] = complete;
                 }
@@ -124,7 +125,6 @@ const homeScreen = (props) => {
             for (let j = 0; j < Object.keys(jsonResponse.sections["Section_"+curSection].pages).length; j++){
                 if(Number(i+1) === Number(curSection) && curPg === Number(j+1)){
                     setPgProgress[i][j] = 1
-                    //curSectPages.push(1);
                 }
             }
         }
@@ -137,9 +137,7 @@ const homeScreen = (props) => {
         let url = `https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`
         axios.put(url, setData)
         .then(res => {
-            if(pgToLoad !== null){
-                loadContent(curPage);
-            }
+            loadContent(curPg);
         })
         .catch(err =>{
             console.log(err)
@@ -153,7 +151,7 @@ const homeScreen = (props) => {
         if(curPage > 1){
             crPage = curPage - 1
             setCurPage(crPage);
-            loadContent(crPage)
+            loadContent(crPage);
         }
     }
 

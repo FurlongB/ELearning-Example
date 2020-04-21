@@ -11,7 +11,8 @@ const NavTabs =(props) => {
   const [title, setTitle] = useState('');
   useEffect(() =>{
     setValue(props.page.pageSrc);
-    setTitle(props.page.name)
+    setTitle(props.page.name);
+    console.log('props.page.pageSrc: ', props.page.pageSrc)
     return () =>{
       console.log('Clean Up');
     }
@@ -25,6 +26,7 @@ const NavTabs =(props) => {
           {value === "mcqx" ? <Mcqx pageTitle={title}/> : null}
           {value === "video" ? <Video pageTitle={title}/> : null}
           {value === "accordian_fs" ? <AccordianFs pageTitle={title}/> : null}
+          {value === "scenario" ? <AccordianFs pageTitle={title}/> : null}
         </div>
     );
 }
