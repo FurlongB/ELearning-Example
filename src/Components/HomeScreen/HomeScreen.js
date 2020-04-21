@@ -21,14 +21,14 @@ const homeScreen = (props) => {
     const [curPage, setCurPage] = useState(1);
     const [curSection, setCurSection] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const [totalSections, setTotalSections] = useState(0);
+    //const [totalSections, setTotalSections] = useState(0);
     const [pgToLoad, setPgToLoad] = useState(null);
     
     useEffect(() =>{
         setTitle(jsonResponse.title);
         setPgToLoad(null);
         const courseSections = jsonResponse.sections;
-        setTotalSections(Object.keys(courseSections).length)
+        //setTotalSections(Object.keys(courseSections).length)
         axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
         .then(res => {
             console.log(res)

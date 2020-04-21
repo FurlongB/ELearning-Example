@@ -11,7 +11,7 @@
 /*
 use this class if you want the video to be full width of the screen
 */
-.VideoPanel{
+.ScenarioPanel{
     padding: 5px;
     margin: 10px auto;
 }
