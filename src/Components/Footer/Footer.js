@@ -15,18 +15,18 @@ const styles = theme => ({
 
 
 const footer = (props) => {
-  const { classes } = props;
-  const [sectTitles, setSectTitles] = useState(null)  
-  useEffect(() =>{
-    const loadTitles = [];
-    for (const key in props.sections){
-        loadTitles.push({id: key, title: props.sections[key].title})
-                
-    }
-    setSectTitles(loadTitles)
-    return () =>{
-        console.log('Clean Up');
-    }
+    const { classes } = props;
+    const [sectTitles, setSectTitles] = useState(null)  
+    useEffect(() =>{
+        const loadTitles = [];
+        for (const key in props.sections){
+            loadTitles.push({id: key, title: props.sections[key].title})
+                    
+        }
+        setSectTitles(loadTitles)
+        return () =>{
+            console.log('Clean Up');
+        }
     }, []);
     
     const updateSection = (sect) => {
