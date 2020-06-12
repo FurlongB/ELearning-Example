@@ -49,14 +49,13 @@ const ControlledExpansionPanels = (props) => {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
-                <Typography className={classes.heading}>Nuclues</Typography>
-                <Typography className={classes.secondaryHeading}>What is a Nucleus Cell.</Typography>
+              <Typography className={classes.heading}>Step 1</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
               <div className={classed.tab}>
                 <div className={classed.Left}>
                   <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel euismod elit. Donec condimentum quam nec mauris aliquet, in hendrerit risus ullamcorper. Pellentesque rhoncus elementum eleifend. Etiam ullamcorper ante vitae orci blandit, id tincidunt lacus finibus. Fusce id mauris facilisis, semper tortor non, cursus risus. Nam quis orci et augue malesuada laoreet. Morbi nec varius nisl. Morbi vehicula ac augue sed placerat. Pellentesque ac metus quis nisl mollis malesuada vitae sit amet dolor.<br/><br/>Nam nec risus quis neque pharetra aliquet. Curabitur venenatis odio sed mauris dictum semper. Donec lobortis lacus ut justo ullamcorper, in sagittis ipsum tempus. Aliquam consectetur nunc nibh, vel tristique tortor blandit at. In faucibus luctus lorem eu interdum. Donec fermentum nisl varius dapibus vestibulum. Sed erat nulla, vestibulum ut porta ut, sollicitudin non ante.
+                  Do this for many diff concs of drug in tissue to build up dose-response curve of radioligand drug binding to receptor in tissue.
                   </Typography>
                 </div>
                 <div className={classed.Right}>
@@ -71,10 +70,7 @@ const ControlledExpansionPanels = (props) => {
                 aria-controls="panel2bh-content"
                 id="panel2bh-header"
               >
-                <Typography className={classes.heading}>Membrane</Typography>
-                <Typography className={classes.secondaryHeading}>
-                  What is a membrane
-                </Typography>
+                <Typography className={classes.heading}>Step 2</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
               <div className={classed.tab}>
@@ -95,10 +91,7 @@ const ControlledExpansionPanels = (props) => {
                 aria-controls="panel3bh-content"
                 id="panel3bh-header"
               >
-                <Typography className={classes.heading}>Animal Cell</Typography>
-                <Typography className={classes.secondaryHeading}>
-                  The make up of a simple animal cell
-                </Typography>
+                <Typography className={classes.heading}>Step 3</Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
               <div className={classed.tab}>
@@ -109,30 +102,6 @@ const ControlledExpansionPanels = (props) => {
                 </div>
                 <div className={classed.Right}>
                   <Image3 /> 
-                </div>
-              </div>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-            <ExpansionPanel expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel4bh-content"
-                id="panel4bh-header"
-              >
-                <Typography className={classes.heading}>Skin Cell</Typography>
-                <Typography className={classes.secondaryHeading}>
-                  The makeup of a basic Skin Cell
-                </Typography>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
-              <div className={classed.tab}>
-                <div className={classed.Left}>
-                  <Typography>
-                  Duis posuere facilisis vehicula. Vivamus viverra cursus urna in dapibus. Morbi blandit lacinia dolor, quis placerat ante ultrices eu. Vestibulum id est in tellus posuere ullamcorper. Morbi in dui imperdiet quam commodo volutpat. Pellentesque in dapibus augue, porttitor gravida nisi. Suspendisse rutrum tempus ante at malesuada.<br/><br/>Nam nec risus quis neque pharetra aliquet. Curabitur venenatis odio sed mauris dictum semper. Donec lobortis lacus ut justo ullamcorper, in sagittis ipsum tempus. Aliquam consectetur nunc nibh, vel tristique tortor blandit at. In faucibus luctus lorem eu interdum. Donec fermentum nisl varius dapibus vestibulum. Sed erat nulla, vestibulum ut porta ut, sollicitudin non ante.
-                  </Typography>
-                </div>
-                <div className={classed.Right}>
-                  <Image4 /> 
                 </div>
               </div>
               </ExpansionPanelDetails>

@@ -6,6 +6,12 @@ import Accordian from '../Accordian/Accordian';
 import Video from '../VideoScreen/VideoScreen';
 import AccordianFs from '../Accordian_fs/Accordian_fs';
 import Scenario from '../Scenario/Scenario';
+import TextGraphicsFs from '../TextGraphics_fs/TextGraphics_fs';
+import TextGraphicsNs from '../TextGraphics_ns/TextGraphics_ns';
+import TextGraphicsBs from '../TextGraphics_bs/TextGraphics_bs';
+import Discuss from '../Discuss/Discuss';
+import Animation from '../Animation/Animation';
+import TextFull from '../TextGraphics_full/TextFull';
 
 const NavTabs =(props) => {
   const [value, setValue] = useState('');
@@ -28,6 +34,12 @@ const NavTabs =(props) => {
           {value === "video" ? <Video pageTitle={title}/> : null}
           {value === "accordian_fs" ? <AccordianFs pageTitle={title}/> : null}
           {value === "scenario" ? <Scenario pageTitle={title}/> : null}
+          {value === "text_fs" ? <TextGraphicsFs pageTitle={title}/>: null}
+          {value === "discuss" ? <Discuss pageTitle={title}/>: null}
+          {value === "text_ns" ? <TextGraphicsNs pageTitle={title}/>: null}
+          {value === "text_bs" ? <TextGraphicsBs pageTitle={title}/>: null}
+          {value === "animation" ? <Animation pageTitle={title}/>: null}
+          {value === "text_full" ? <TextFull pageTitle={title}/>: null}
         </div>
     );
 }

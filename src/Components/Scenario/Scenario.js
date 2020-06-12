@@ -11,9 +11,27 @@ import classes from './Scenario.css';
 const scenarioQuestions = (props) =>{
     const [nextQ, setNextQ] = useState(1);
     const [vidToPlay, setVidToPlay] = useState(null);
+    const [feedback, setFeedback] = useState(null);
+    let correctPath = [];
+    let yourPath = [];
     const allScenarios = scenario.Sceanarios;
+    correctPath = scenario.correct_path.split(",");
     useEffect(() =>{
-        setVidToPlay(allScenarios["Scenario_"+nextQ].video_file)
+         if(nextQ !== "end"){
+            yourPath.push(nextQ)
+            setVidToPlay(allScenarios["Scenario_"+nextQ].video_file);
+        }else{
+            setVidToPlay(null);
+            const feedback = allScenarios["Scenario_"+nextQ].options
+            console.log("feedback: ",feedback)
+            console.log("CorrectPain: ",Object.entries(correctPath).toString())
+            if(Object.entries(correctPath).toString() === Object.entries(yourPath).toString()){
+                console.log("feedback: ",feedback[0].option_correct)
+                setFeedback(feedback[0].option_correct)
+            }
+                
+        }
+
         //console.log("vidToPlay: ",allScenarios["Scenario_"+nextQ].video_file);
         return () =>{
             //console.log('Clean Up');
@@ -24,7 +42,6 @@ const scenarioQuestions = (props) =>{
         setVidToPlay(null);
         setNextQ(nQuest);
     }
-
     return(
         <div className={classes.Ruled}>
             <div className={classes.box}>
@@ -32,10 +49,10 @@ const scenarioQuestions = (props) =>{
                 Please look at the video and select the next step for the situation.
             </div>
             <div>
-                {vidToPlay !== null ? <Video vidToPlay={vidToPlay}/>: <Spinner/>}
+                {feedback === null && vidToPlay !== null ? <Video vidToPlay={vidToPlay}/>: <Spinner/>}
             </div>
             <div>
-                {vidToPlay !== null ? <Options options={allScenarios["Scenario_"+nextQ].options} submitClick={setNextScenario.bind(this)}/>: null}
+                {feedback === null && vidToPlay !== null ? <Options options={allScenarios["Scenario_"+nextQ].options} submitClick={setNextScenario.bind(this)}/>: null}
             </div>
         </div>
           

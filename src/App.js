@@ -19,8 +19,7 @@ const App = () =>{
 
     let routes = (
       <Switch>
-        <Route path="/" exact component={Auth} />
-        <Route path="/home" component={HomeScreen}/>
+         <Route path="/" component={HomeScreen}/>
         <Redirect to="/" /> 
       </Switch>
     );

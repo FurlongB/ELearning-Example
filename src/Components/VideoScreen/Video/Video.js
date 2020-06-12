@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Video from '../../../assets/bailey.mp4'
+import Video from '../../../assets/specific_binding.mp4'
 
 const video = (props)=>(
   <div>
-    <video controls="controls">
+    <video controls="controls" width="100%" height="100%">
       <source src={Video} type="video/mp4"/>
       Your browser does not support the HTML5 Video element.
   </video>
