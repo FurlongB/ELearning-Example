@@ -12,7 +12,7 @@ const ruled = (props) =>{
                   <h1>{props.pageTitle}</h1>
                   <ul>
                       <li>Determination of affinity constant (K<sub>A</sub>) using radio-labelled drug (D*)
-                        <li>Commonly used radiolabel = tritium, (<super>3</super>H), t<sub>½</sub>=12.3yr</li>
+                        <li>Commonly used radiolabel = tritium, (<sup>3</sup>H), t<sub>½</sub>=12.3yr</li>
                       </li>
                       <li>Incubate tissue/cells with D*, wash away excess drug &amp; measure levels of radioactivity in sample</li>
                       <li>Detect 

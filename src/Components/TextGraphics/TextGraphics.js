@@ -10,12 +10,10 @@ const ruled = (props) =>{
             <div className={classes.Left}>
                 <div className={classes.box}>
                   <h1>{props.pageTitle}</h1>
-                  <ul>
-                    <li>Contextualise radioligand binding assays</li>
-                    <li> Group discussion</li>   
-                    <li>Recap of binding assays</li>
-                    <li>Decide which drug is best based on the Kd</li>
-                  </ul>
+                  <p>Welcome to your first quantitative pharmacology workshop elearning module.  The purpose of this module is to contextualise the application of the <b>radioligand binding assay</b>.</p>
+                  <p>By working through this module, you will gain skills such as the analysis of scientific data, presenting drug binding data as a graph and calculating the binding affinity of 3 experimental drugs.</p>  
+                  <p>You will be provided with a formative assessment on your knowledge of the radioligand binding assay. To proceed with this module you should have completed receptor pharmacology Lecture 1 &apos; Lecture 2.</p> 
+
                 </div>  
                 
             </div>

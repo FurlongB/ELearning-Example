@@ -28,10 +28,11 @@ const NavTabs =(props) => {
     return (
         <div>
           {value === "text" ? <TextGraphics pageTitle={title}/>: null}
+          {value === "video" ? <Video pageTitle={title}/> : null}
           {value === "accordian" ? <Accordian pageTitle={title}/>: null}
           {value === "mcq1" ? <Mcq1 pageTitle={title}/> : null}
           {value === "mcqx" ? <Mcqx pageTitle={title}/> : null}
-          {value === "video" ? <Video pageTitle={title}/> : null}
+         
           {value === "accordian_fs" ? <AccordianFs pageTitle={title}/> : null}
           {value === "scenario" ? <Scenario pageTitle={title}/> : null}
           {value === "text_fs" ? <TextGraphicsFs pageTitle={title}/>: null}

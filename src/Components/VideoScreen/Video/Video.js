@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Video from '../../../assets/specific_binding.mp4'
+import Video from '../../../assets/kings_college.mp4'
 
 const video = (props)=>(
   <div>

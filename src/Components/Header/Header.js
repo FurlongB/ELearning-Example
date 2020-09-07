@@ -13,7 +13,8 @@ const header = props => {
             <Logo />
         </div>
         <div >
-            <h1 className={classes.DesktopOnly}>{props.coursetitle}</h1>
+            <h1 className={classes.DesktopOnly}>Workshop 1 - Determination of drug K<sub>d</sub> using Scatchard plot
+</h1>
         </div>
         <div>
             <Close />
