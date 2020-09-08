@@ -1,17 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import TextGraphics from '../TextGraphics/TextGraphics';
 import Mcq1 from '../MCQ1/MCQ1';
-import Mcqx from '../MCQx/MCQx';
-import Accordian from '../Accordian/Accordian';
+import Mcq1a from '../MCQ1a/MCQ1a';
+import Mcq1b from '../MCQ1b/MCQ1b';
 import Video from '../VideoScreen/VideoScreen';
-import AccordianFs from '../Accordian_fs/Accordian_fs';
-import Scenario from '../Scenario/Scenario';
-import TextGraphicsFs from '../TextGraphics_fs/TextGraphics_fs';
+import Video1 from '../VideoScreen_1/VideoScreen_1';
+import Video2 from '../VideoScreen_2/VideoScreen_2';
 import TextGraphicsNs from '../TextGraphics_ns/TextGraphics_ns';
-import TextGraphicsBs from '../TextGraphics_bs/TextGraphics_bs';
-import Discuss from '../Discuss/Discuss';
-import Animation from '../Animation/Animation';
-import TextFull from '../TextGraphics_full/TextFull';
+
 
 const NavTabs =(props) => {
   const [value, setValue] = useState('');
@@ -29,18 +25,12 @@ const NavTabs =(props) => {
         <div>
           {value === "text" ? <TextGraphics pageTitle={title}/>: null}
           {value === "video" ? <Video pageTitle={title}/> : null}
-          {value === "accordian" ? <Accordian pageTitle={title}/>: null}
+          {value === "video_1" ? <Video1 pageTitle={title}/> : null}
           {value === "mcq1" ? <Mcq1 pageTitle={title}/> : null}
-          {value === "mcqx" ? <Mcqx pageTitle={title}/> : null}
-         
-          {value === "accordian_fs" ? <AccordianFs pageTitle={title}/> : null}
-          {value === "scenario" ? <Scenario pageTitle={title}/> : null}
-          {value === "text_fs" ? <TextGraphicsFs pageTitle={title}/>: null}
-          {value === "discuss" ? <Discuss pageTitle={title}/>: null}
           {value === "text_ns" ? <TextGraphicsNs pageTitle={title}/>: null}
-          {value === "text_bs" ? <TextGraphicsBs pageTitle={title}/>: null}
-          {value === "animation" ? <Animation pageTitle={title}/>: null}
-          {value === "text_full" ? <TextFull pageTitle={title}/>: null}
+          {value === "mcq1a" ? <Mcq1a pageTitle={title}/> : null}
+          {value === "video_2" ? <Video2 pageTitle={title}/> : null}
+          {value === "mcq1b" ? <Mcq1b pageTitle={title}/> : null}
         </div>
     );
 }

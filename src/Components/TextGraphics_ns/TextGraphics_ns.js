@@ -7,23 +7,16 @@ import classes from './TextGraphics_ns.css'
 const ruled = (props) =>{
     return(
         <div className={classes.Ruled}>
-            <div className={classes.Left}>
-                <div className={classes.box}>
-                  <h1>{props.pageTitle}</h1>
-                  <ul>
-                      <li>Determination of affinity constant (K<sub>A</sub>) using radio-labelled drug (D*)
-                        <li>Commonly used radiolabel = tritium, (<sup>3</sup>H), t<sub>½</sub>=12.3yr</li>
-                      </li>
-                      <li>Incubate tissue/cells with D*, wash away excess drug &amp; measure levels of radioactivity in sample</li>
-                      <li>Detect 
-                          <li>Specific binding: drug bound to receptor<br/> - High affinity</li>
-                          <li>Non-specific binding: drug remaining stuck to other parts of tissue/apparatus<br/> - Low affinity</li>
-                      </li>
-                  </ul>
-                </div>  
-            </div>
-            <div className={classes.Right}>
-                <Image />   
+            <div className={classes.box}>
+                <div className={classes.Left}>
+                    
+                    <h1>{props.pageTitle}</h1>
+                    <p>Before you proceed it is important that you review the lecture notes on the Hill-Langmuir Equation. The Hill-Langmuir equation establishes a mathematical relationship between the drug concentration [D] added to the receptor preparation and the receptor bound (&THORN;A), which can be measured and plotted on a graph.  The dissociation constant (K<sub>d</sub>) of a drug is equal to the concentration of drug when 50% of the receptors are occupied (bound) by the drug.</p>
+                    </div>  
+                
+                <div className={classes.Right}>
+                    <Image />   
+                </div>
             </div>
         </div>
         

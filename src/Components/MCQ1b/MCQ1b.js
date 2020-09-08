@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Image from './Image/page1';
 import Feedback from '../FeedbackBox/FeedBackBox'
 
-import classed from './MCQ1.css';
+import classed from './MCQ1b.css';
 
 const styles = theme => ({
     formControl: {
@@ -24,7 +24,7 @@ const styles = theme => ({
 
 const ErrorRadios = (props) => {
   const { classes } = props;
-  const [answer, SetAnswer] = useState('The concentration of radioactive drug')
+  const [answer, SetAnswer] = useState('Bspecific')
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
@@ -41,10 +41,10 @@ const ErrorRadios = (props) => {
 
     if (value === answer) {
       setTitle('Well Done!!!!')
-      setHelperText('Congratulations you have chosen the correct option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('Congratulations you have chosen the correct option. The values of the X axis on a Scatchard plot are derived from calculating Bspecific.');
     } else {
       setTitle('Incorrect')
-      setHelperText('Incorrect you have chosen an incorrect option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('That is not the correct option. The values of the X axis on a Scatchard plot are derived from calculating Bspecific.');
       
     }
     setError(true);
@@ -53,24 +53,22 @@ const ErrorRadios = (props) => {
 
   return (
     <div className={classed.Ruled}>
-       
       <div className={classed.box}>
         <div>
             {error ? <Feedback title={title} feedback={helperText}/> : null}
         </div>
-            <div className={classed.Left}>
+        <div className={classed.Left}>
             
                 <form onSubmit={handleSubmit} id="formSubmited">
                 <h1>{props.pageTitle}</h1>
-                <div className={classed.questText}>What does the symbol D* stand for?</div>
+                <div className={classed.questText}>The values of the X axis on a Scatchard plot are derived from calculating?</div>
                 <div className={classed.promptText}>Please select one option, then click <b>Submit</b>.</div>
                     <FormControl component="fieldset" error={error} className={classes.formControl}>
                         <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange} >
-                          <FormControlLabel value="The concentration of cold drug" control={<Radio />} label="The concentration of cold drug" />
-                          <FormControlLabel value="The concentration of drug-receptor complexes" control={<Radio />} label="The concentration of drug-receptor
-  complexes" />
-                          <FormControlLabel value="The concentration of radioactive drug" control={<Radio />} label="The concentration of radioactive drug" />
-                          <FormControlLabel value="The concentration of buffer" control={<Radio />} label="The concentration of buffer" />
+                          <FormControlLabel value="Btot" control={<Radio />} label={<span>B<sub>tot</sub></span>} />
+                          <FormControlLabel value="Bspecific" control={<Radio />} label={<span>B<sub>specific</sub></span>} />
+  <FormControlLabel value="Bmax" control={<Radio />} label={<span>B<sub>max</sub></span>} />
+                          <FormControlLabel value="B* of the above" control={<Radio />} label="B* of the above" />
                         </RadioGroup>
                         <br/>
                         <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={value === '' ? true : false}>
@@ -79,7 +77,7 @@ const ErrorRadios = (props) => {
                     </FormControl>
                 </form>
             </div>
-        
+       
           <div className={classed.Right}>
               <Image />   
           </div>

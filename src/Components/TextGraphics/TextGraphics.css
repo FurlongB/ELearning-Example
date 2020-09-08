@@ -16,9 +16,10 @@
 
 .box{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-content: center;
-    padding: 8px;
+    margin: 10px auto;
+    padding: 10px;
     box-shadow: 0 2px 3px #ccc;
     border: 1px solid #eee;
     background-color:#EDEFF4;
@@ -26,8 +27,9 @@
 
 .Right{
     padding: 5px;
+    margin: 0px auto;
     box-sizing: border-box;
-    width:38%
+    width:35%
 }
 
 h1 {

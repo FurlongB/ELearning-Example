@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Image from './Image/page1';
 import Feedback from '../FeedbackBox/FeedBackBox'
 
-import classed from './MCQ1.css';
+import classed from './MCQ1a.css';
 
 const styles = theme => ({
     formControl: {
@@ -24,7 +24,7 @@ const styles = theme => ({
 
 const ErrorRadios = (props) => {
   const { classes } = props;
-  const [answer, SetAnswer] = useState('The concentration of radioactive drug')
+  const [answer, SetAnswer] = useState('1000')
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
@@ -41,10 +41,10 @@ const ErrorRadios = (props) => {
 
     if (value === answer) {
       setTitle('Well Done!!!!')
-      setHelperText('Congratulations you have chosen the correct option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('Congratulations you have chosen the correct option.');
     } else {
       setTitle('Incorrect')
-      setHelperText('Incorrect you have chosen an incorrect option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('That is not the correct option, the correct option is 1000.');
       
     }
     setError(true);
@@ -53,24 +53,23 @@ const ErrorRadios = (props) => {
 
   return (
     <div className={classed.Ruled}>
-       
       <div className={classed.box}>
         <div>
             {error ? <Feedback title={title} feedback={helperText}/> : null}
         </div>
-            <div className={classed.Left}>
+        <div className={classed.Left}>
             
                 <form onSubmit={handleSubmit} id="formSubmited">
                 <h1>{props.pageTitle}</h1>
-                <div className={classed.questText}>What does the symbol D* stand for?</div>
+                <div className={classed.questText}>Look at the graph provided of the &THORN;A (%receptor occupancy) of a drug [D]. What is the K<sub>d</sub> of the drug from this graph?</div>
                 <div className={classed.promptText}>Please select one option, then click <b>Submit</b>.</div>
                     <FormControl component="fieldset" error={error} className={classes.formControl}>
                         <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange} >
-                          <FormControlLabel value="The concentration of cold drug" control={<Radio />} label="The concentration of cold drug" />
-                          <FormControlLabel value="The concentration of drug-receptor complexes" control={<Radio />} label="The concentration of drug-receptor
-  complexes" />
-                          <FormControlLabel value="The concentration of radioactive drug" control={<Radio />} label="The concentration of radioactive drug" />
-                          <FormControlLabel value="The concentration of buffer" control={<Radio />} label="The concentration of buffer" />
+                          <FormControlLabel value="10" control={<Radio />} label="10" />
+                          <FormControlLabel value="100" control={<Radio />} label="100" />
+                          <FormControlLabel value="1000" control={<Radio />} label="1000" />
+                          <FormControlLabel value="10000" control={<Radio />} label="10000" />
+                          <FormControlLabel value="100000" control={<Radio />} label="100000" />
                         </RadioGroup>
                         <br/>
                         <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={value === '' ? true : false}>
@@ -78,11 +77,11 @@ const ErrorRadios = (props) => {
                         </Button>
                     </FormControl>
                 </form>
-            </div>
-        
-          <div className={classed.Right}>
-              <Image />   
-          </div>
+            
+        </div>
+        <div className={classed.Right}>
+            <Image />   
+        </div>
       </div>
     </div>
   );
