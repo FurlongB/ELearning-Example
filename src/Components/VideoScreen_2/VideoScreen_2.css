@@ -31,6 +31,7 @@ use this class if you want the video to be full width of the screen
     flex-direction: row;
     align-content: center;
     padding: 8px;
+    margin: 10px auto;
     box-shadow: 0 2px 3px #ccc;
     border: 1px solid #eee;
     background-color:#EDEFF4;
