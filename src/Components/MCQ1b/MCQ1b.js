@@ -29,11 +29,13 @@ const ErrorRadios = (props) => {
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
   const [helperText, setHelperText] = useState('');
+  const [questDone, setQuestDone] = useState(false);
 
   const handleRadioChange = event => {
     setValue(event.target.value);
     setHelperText('');
     setError(null);
+    setQuestDone(true);
   };
 
   const handleSubmit = event => {
@@ -48,7 +50,7 @@ const ErrorRadios = (props) => {
       
     }
     setError(true);
-    setValue('');
+    setQuestDone(false);
   };
 
   return (
@@ -71,7 +73,7 @@ const ErrorRadios = (props) => {
                           <FormControlLabel value="B* of the above" control={<Radio />} label="B* of the above" />
                         </RadioGroup>
                         <br/>
-                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={value === '' ? true : false}>
+                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={questDone === false ? true : false}>
                             SUBMIT
                         </Button>
                     </FormControl>

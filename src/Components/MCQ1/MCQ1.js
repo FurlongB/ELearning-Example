@@ -24,16 +24,18 @@ const styles = theme => ({
 
 const ErrorRadios = (props) => {
   const { classes } = props;
-  const [answer, SetAnswer] = useState('The concentration of radioactive drug')
+  const [answer, SetAnswer] = useState('The concentration of radioactive drug');
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
   const [error, setError] = useState(null);
   const [helperText, setHelperText] = useState('');
+  const [questDone, setQuestDone] = useState(false);
 
   const handleRadioChange = event => {
     setValue(event.target.value);
     setHelperText('');
     setError(null);
+    setQuestDone(true);
   };
 
   const handleSubmit = event => {
@@ -48,7 +50,7 @@ const ErrorRadios = (props) => {
       
     }
     setError(true);
-    setValue('');
+    setQuestDone(false);
   };
 
   return (
@@ -73,7 +75,7 @@ const ErrorRadios = (props) => {
                           <FormControlLabel value="The concentration of buffer" control={<Radio />} label="The concentration of buffer" />
                         </RadioGroup>
                         <br/>
-                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={value === '' ? true : false}>
+                        <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={questDone === false ? true : false}>
                             SUBMIT
                         </Button>
                     </FormControl>
