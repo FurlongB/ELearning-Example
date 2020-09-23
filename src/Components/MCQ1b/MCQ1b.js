@@ -70,7 +70,7 @@ const ErrorRadios = (props) => {
                           <FormControlLabel value="Btot" control={<Radio />} label={<span>B<sub>tot</sub></span>} />
                           <FormControlLabel value="Bspecific" control={<Radio />} label={<span>B<sub>specific</sub></span>} />
   <FormControlLabel value="Bmax" control={<Radio />} label={<span>B<sub>max</sub></span>} />
-                          <FormControlLabel value="B* of the above" control={<Radio />} label="B* of the above" />
+                          <FormControlLabel value="D* of the above" control={<Radio />} label="D* of the above" />
                         </RadioGroup>
                         <br/>
                         <Button type="submit" variant="contained" color="secondary" className={classes.button} disabled={questDone === false ? true : false}>

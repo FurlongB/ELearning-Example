@@ -11,7 +11,8 @@ export const jsonResponse = {
           { "name":"The Hill-Langmuir Equation", "pageSrc": "text_ns", "type": "normal", "id": "tg_01_05" },
           { "name":"Question Time", "pageSrc": "mcq1a", "type": "normal", "id": "tg_01_06" },
           { "name":"The Scatchard Plot", "pageSrc": "video_2", "type": "normal", "id": "tg_01_07" },
-          { "name":"Question Time", "pageSrc": "mcq1b", "type": "normal", "id": "tg_01_08" }
+          { "name":"Question Time", "pageSrc": "mcq1b", "type": "normal", "id": "tg_01_08" },
+          { "name":"Summary", "pageSrc": "summary", "type": "normal", "id": "tg_01_09" }
         ],
       }, 
     },

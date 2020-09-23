@@ -7,6 +7,7 @@ import Video from '../VideoScreen/VideoScreen';
 import Video1 from '../VideoScreen_1/VideoScreen_1';
 import Video2 from '../VideoScreen_2/VideoScreen_2';
 import TextGraphicsNs from '../TextGraphics_ns/TextGraphics_ns';
+import Summary from '../Summary/Summary';
 
 
 const NavTabs =(props) => {
@@ -31,6 +32,7 @@ const NavTabs =(props) => {
           {value === "mcq1a" ? <Mcq1a pageTitle={title}/> : null}
           {value === "video_2" ? <Video2 pageTitle={title}/> : null}
           {value === "mcq1b" ? <Mcq1b pageTitle={title}/> : null}
+          {value === "summary" ? <Summary pageTitle={title}/> : null}
         </div>
     );
 }

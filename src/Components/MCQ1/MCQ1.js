@@ -43,10 +43,10 @@ const ErrorRadios = (props) => {
 
     if (value === answer) {
       setTitle('Well Done!!!!')
-      setHelperText('Congratulations you have chosen the correct option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('Congratulations you have chosen the correct option, the symbol D* stands for the concentration of radioactive drug.');
     } else {
       setTitle('Incorrect')
-      setHelperText('Incorrect you have chosen an incorrect option, the symbol D* stand for is the concentration of radioactive drug.');
+      setHelperText('Incorrect you have chosen an incorrect option, the symbol D* stands for the concentration of radioactive drug.');
       
     }
     setError(true);
