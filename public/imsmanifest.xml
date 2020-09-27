@@ -33,8 +33,8 @@ The XSD files for SCORM 1.2 are not strictly valid and may cause errors in some 
     <schemaversion>1.2</schemaversion>
   </metadata>
   <!-- There is just one organization. The organization contains just one item.-->
-	<organizations default="golf_sample_default_org">
-		<organization identifier="golf_sample_default_org">
+	<organizations default="fiona_furlong_phd">
+		<organization identifier="fiona_furlong_phd">
 			<title>Investigation of novel compounds to treat epilepsy</title>
 			<item identifier="item_1" identifierref="resource_1">
 				<title>Investigation of novel compounds to treat epilepsy</title>
