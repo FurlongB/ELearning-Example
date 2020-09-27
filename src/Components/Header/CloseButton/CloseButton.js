@@ -10,7 +10,7 @@ const closeButton = () =>{
         {
             window.open(location, '_self').close();
         }   
-        //console.log('Closing the screen')
+        ////console.log('Closing the screen')
     }
     return(
         <div className={classes.CloseButton}>

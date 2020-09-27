@@ -31,7 +31,7 @@ const homeScreen = (props) => {
         //setTotalSections(Object.keys(courseSections).length)
         axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
         .then(res => {
-            //console.log(res)
+            ////console.log(res)
             let setSectProgress = [];
             let setPgProgress = [];
             let setCompletion = [];
@@ -60,7 +60,7 @@ const homeScreen = (props) => {
                 setPgProgress = res.data.page;
                 setCompletion = res.data.completion
             }
-            //console.log("setCompletion: ", setCompletion)
+            ////console.log("setCompletion: ", setCompletion)
             const setData = {
                 section: setSectProgress,
                 page: setPgProgress,
@@ -70,12 +70,12 @@ const homeScreen = (props) => {
             loadcourseData();
         })
         .catch(err =>{
-            //console.log(err)
+            ////console.log(err)
 
         });
        
         return () =>{
-            ////console.log('Clean Up');
+            //////console.log('Clean Up');
         }
     }, [curSection]);
 
@@ -133,7 +133,7 @@ const homeScreen = (props) => {
             loadContent(curPg);
         })
         .catch(err =>{
-            //console.log(err)
+            ////console.log(err)
 
         });
     };

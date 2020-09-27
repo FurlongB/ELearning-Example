@@ -23,7 +23,7 @@ const footer = (props) => {
         }
         setSectTitles(loadTitles)
         return () =>{
-            console.log('Clean Up');
+            //console.log('Clean Up');
         }
     }, []);
     
