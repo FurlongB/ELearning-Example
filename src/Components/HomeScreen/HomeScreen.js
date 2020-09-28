@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import axios from 'axios';
+import {SCORM} from 'pipwerks-scorm-api-wrapper';
 
 import Page from '../Navigation/Navigation';
 import Header from '../Header/Header';
@@ -27,15 +27,18 @@ const homeScreen = (props) => {
     useEffect(() =>{
         setTitle(jsonResponse.title);
         setPgToLoad(null);
+        const courseInit = SCORM.init();
+        console.log('courseInit: ', courseInit);
         const courseSections = jsonResponse.sections;
         //setTotalSections(Object.keys(courseSections).length)
-        axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
-        .then(res => {
+        //axios.get(`https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`)
+        //.then(res => {
             ////console.log(res)
             let setSectProgress = [];
             let setPgProgress = [];
             let setCompletion = [];
-            if(res.data === null){
+            if(!courseInit){
+                SCORM.set('cmi.core.lesson_status', 'incomplete');
                 for(let i = 0; i < Object.keys(courseSections).length; i++){
                     if(i === Number(curSection-1)){
                         setSectProgress.push(1);
@@ -54,11 +57,12 @@ const homeScreen = (props) => {
                     }
                     setPgProgress.push(curSectPages);
                 }
-                
+               
             }else{
-                setSectProgress = res.data.section;
-                setPgProgress = res.data.page;
-                setCompletion = res.data.completion
+                const status = SCORM.get('cmi.suspend_data');
+                setSectProgress = status.section;
+                setPgProgress = status.page;
+                setCompletion = status.completion
             }
             ////console.log("setCompletion: ", setCompletion)
             const setData = {
@@ -67,12 +71,14 @@ const homeScreen = (props) => {
                 completion: setCompletion
             } 
             getSection.setSect(setData)
+            SCORM.set('cmi.suspend_data', setData);
+            SCORM.save();
             loadcourseData();
-        })
-        .catch(err =>{
+        //})
+       // .catch(err =>{
             ////console.log(err)
 
-        });
+       // });
        
         return () =>{
             //////console.log('Clean Up');
@@ -111,6 +117,7 @@ const homeScreen = (props) => {
                 }
                 if(complete === 100){
                     setSectProgress[i] = 2;
+                    SCORM.set('cmi.core.lesson_status', 'completed');
                 }else{
                     setSectProgress[i] = 1;
                 }
@@ -120,22 +127,16 @@ const homeScreen = (props) => {
                     setPgProgress[i][j] = 1
                 }
             }
-        }
+        } 
         const setData = {
             section: setSectProgress,
             page: setPgProgress,
             completion: setCompletion
         } 
         getSection.setSect(setData);
-        let url = `https://adaptscenario.firebaseio.com/${jsonResponse.title}.json`
-        axios.put(url, setData)
-        .then(res => {
-            loadContent(curPg);
-        })
-        .catch(err =>{
-            ////console.log(err)
-
-        });
+        SCORM.set('cmi.suspend_data', setData);
+        SCORM.save();
+        loadContent(curPg);
     };
 
     const handlePrev = (event) =>{
