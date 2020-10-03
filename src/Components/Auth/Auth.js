@@ -54,16 +54,16 @@ const OutlinedTextFields = (props) => {
         email: email,
         password: password
     }
-    //console.log(authData)
+    ////console.log(authData)
     let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyChfWbBTJfRIvixtLlhQacoxAOSVVQ84b4';
     axios.post(url, authData)
     .then(res => {
-        //console.log(res)
+        ////console.log(res)
         authStatus.login(res.data.localId);
         setAuth(true);
     })
     .catch(err =>{
-        //console.log(err)
+        ////console.log(err)
         setAuth(false);
     });
 

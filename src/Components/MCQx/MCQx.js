@@ -65,13 +65,13 @@ const CheckboxesGroup = (props) => {
   const handleSubmit = event => {
     event.preventDefault();
     let correctAnswers = 0;
-    //console.log('answers: ', Object.keys(theAnswer).length)
+    ////console.log('answers: ', Object.keys(theAnswer).length)
     for (const key in answers ){
       if(answers[key] === theAnswer[key]){
           correctAnswers++;
       };
     };
-    //console.log('correctAnswers: ', correctAnswers)
+    ////console.log('correctAnswers: ', correctAnswers)
     if (correctAnswers === Object.keys(theAnswer).length) {
       setTitle('Well Done!!!!')
       setHelperText('Congratulations you have chosen the correct options, fever, cough and tiredness are symptons of Covid-19.');

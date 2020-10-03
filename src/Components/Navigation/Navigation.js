@@ -16,9 +16,9 @@ const NavTabs =(props) => {
   useEffect(() =>{
     setValue(props.page.pageSrc);
     setTitle(props.page.name);
-    //console.log('props.page.pageSrc: ', props.page.pageSrc)
+    ////console.log('props.page.pageSrc: ', props.page.pageSrc)
     return () =>{
-      //console.log('Clean Up');
+      ////console.log('Clean Up');
     }
   }, [props]);
 
